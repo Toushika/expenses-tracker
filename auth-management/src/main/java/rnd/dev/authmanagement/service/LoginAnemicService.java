@@ -15,7 +15,7 @@ public class LoginAnemicService {
         this.userRepository = userRepository;
     }
 
-    public User getUser(String email) {
+    public User getUserOrNull(String email) {
         return userRepository.getUserByEmail(email).orElseThrow();
     }
 

@@ -22,13 +22,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)       // disable CSRF for REST APIs
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/v3/api-docs/**",
+                        .requestMatchers("/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/auth/**").permitAll()  // allow signup/login
                         .anyRequest().authenticated()             // protect other APIs
                 )
-          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

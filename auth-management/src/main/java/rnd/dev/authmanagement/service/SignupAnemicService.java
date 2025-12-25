@@ -1,9 +1,11 @@
 package rnd.dev.authmanagement.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import rnd.dev.authmanagement.entity.User;
 import rnd.dev.authmanagement.repository.UserRepository;
 
+@Slf4j
 @Service
 public class SignupAnemicService {
 

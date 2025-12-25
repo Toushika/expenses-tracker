@@ -22,7 +22,7 @@ public class AuthClientService {
     }
 
     public UserInfoResponse validateToken(String token) {
-        log.info("validateToken :: token : {}", token);
+        log.info("AuthClientService :: validateToken :: token : {}", token);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
         HttpEntity<Void> request = new HttpEntity<>(headers);

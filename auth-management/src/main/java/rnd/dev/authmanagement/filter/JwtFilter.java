@@ -10,17 +10,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import rnd.dev.authmanagement.constant.SecurityConstants;
 import rnd.dev.authmanagement.utility.JwtUtility;
 
 import java.io.IOException;
 import java.util.Collections;
 
+import static rnd.dev.authmanagement.constant.SecurityConstants.BEARER_PREFIX;
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtility jwtUtility;
-    private static final String AUTH_HEADER = "Authorization";
-    private static final String BEARER_PREFIX = "Bearer ";
 
     public JwtFilter(JwtUtility jwtUtility) {
         this.jwtUtility = jwtUtility;
@@ -29,7 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String header = request.getHeader(AUTH_HEADER);
+        String header = request.getHeader(SecurityConstants.AUTHORIZATION);
 
         if (header != null && header.startsWith(BEARER_PREFIX)) {
             String token = header.substring(BEARER_PREFIX.length());

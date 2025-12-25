@@ -15,6 +15,7 @@ import rnd.dev.expensemanagement.service.ExpensesService;
 import java.util.List;
 
 import static rnd.dev.expensemanagement.constant.ApiUrlConstants.*;
+import static rnd.dev.expensemanagement.constant.SecurityConstants.AUTHORIZATION;
 
 @Slf4j
 @RestController
@@ -33,20 +34,20 @@ public class ExpenseController extends AbstractController {
     }
 
     @PostMapping(SAVE_URL)
-    public CreateExpenseResponse saveExpense(@RequestHeader("Authorization") String authHeader,
+    public CreateExpenseResponse saveExpense(@RequestHeader(AUTHORIZATION) String authHeader,
                                              @RequestBody CreateExpenseRequest createExpensesRequest) {
         return expensesService.saveExpense(authHeader, createExpensesRequest);
 
     }
 
     @GetMapping(GET_ALL_URL)
-    public List<ExpenseResponse> getAllExpenses(@RequestHeader("Authorization") String authHeader) {
+    public List<ExpenseResponse> getAllExpenses(@RequestHeader(AUTHORIZATION) String authHeader) {
         return expensesService.getAllExpenses(authHeader);
 
     }
 
     @GetMapping(GET_BY_CATEGORY_URL)
-    public Page<ExpenseResponse> getExpenseByCategory(@RequestHeader("Authorization") String authHeader,
+    public Page<ExpenseResponse> getExpenseByCategory(@RequestHeader(AUTHORIZATION) String authHeader,
                                                       @RequestParam(name = "category") ExpenseCategory category,
                                                       @RequestParam(defaultValue = "0") int page,
                                                       @RequestParam(defaultValue = "10") int size) {
@@ -54,17 +55,17 @@ public class ExpenseController extends AbstractController {
     }
 
     @PutMapping(UPDATE_EXPENSE_URL)
-    public UpdateExpenseResponse updateExpense(@RequestHeader("Authorization") String authHeader, @PathVariable String expenseId, @RequestBody UpdateExpenseRequest updateExpenseRequest) {
+    public UpdateExpenseResponse updateExpense(@RequestHeader(AUTHORIZATION) String authHeader, @PathVariable String expenseId, @RequestBody UpdateExpenseRequest updateExpenseRequest) {
         return expensesService.updateExpense(authHeader, expenseId, updateExpenseRequest);
     }
 
     @DeleteMapping(DELETE_ALL_URL)
-    public DeleteResponse deleteAllExpenses(@RequestHeader("Authorization") String authHeader) {
+    public DeleteResponse deleteAllExpenses(@RequestHeader(AUTHORIZATION) String authHeader) {
         return expensesService.deleteAllExpense(authHeader);
     }
 
     @DeleteMapping(DELETE_EXPENSE_ID_URL)
-    public DeleteResponse deleteByExpenseId(@RequestHeader("Authorization") String authHeader, @PathVariable String expenseId) {
+    public DeleteResponse deleteByExpenseId(@RequestHeader(AUTHORIZATION) String authHeader, @PathVariable String expenseId) {
         return expensesService.deleteExpenseByExpenseId(authHeader, expenseId);
     }
 
