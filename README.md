@@ -87,6 +87,7 @@ cd ../expense-management
 * Spring Boot 3.x
 * Spring Web & Security (JWT)
 * MongoDB
+* Logback
 * Gradle
 
 ---
