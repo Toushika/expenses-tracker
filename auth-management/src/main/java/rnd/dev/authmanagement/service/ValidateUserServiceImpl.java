@@ -7,7 +7,7 @@ import rnd.dev.authmanagement.dto.response.UserInfoResponse;
 import rnd.dev.authmanagement.error.exception.InvalidAuthorizationHeaderException;
 import rnd.dev.authmanagement.utility.JwtUtility;
 
-import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.AUTHORIZATION_HEADER_MESSAGE;
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstants.AUTHORIZATION_HEADER_MESSAGE;
 import static rnd.dev.authmanagement.constant.SecurityConstants.*;
 
 @Slf4j

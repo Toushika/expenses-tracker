@@ -21,7 +21,7 @@ public class ExpensesAnemicService {
     }
 
     protected Expense saveExpense(Expense expense) {
-        log.info("saveExpense :: expense : {}", expense);
+        log.info("ExpensesAnemicService :: saveExpense :: expense : {}", expense);
         return expenseRepository.save(expense);
     }
 

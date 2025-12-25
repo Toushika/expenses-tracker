@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import rnd.dev.authmanagement.entity.misc.Role;
+import rnd.dev.authmanagement.entity.enums.Role;
 
 import static rnd.dev.authmanagement.constant.CollectionConstants.USERS_COLLECTION;
 

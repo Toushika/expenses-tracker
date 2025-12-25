@@ -10,8 +10,8 @@ import rnd.dev.authmanagement.error.exception.WrongPasswordException;
 import rnd.dev.authmanagement.utility.JwtUtility;
 import rnd.dev.authmanagement.utility.PasswordUtility;
 
-import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.NO_USER_AVAILABLE_MESSAGE;
-import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.WRONG_PASSWORD_MESSAGE;
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstants.NO_USER_AVAILABLE_MESSAGE;
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstants.WRONG_PASSWORD_MESSAGE;
 import static rnd.dev.authmanagement.constant.ResponseMessage.SUCCESSFUL_LOGIN_MESSAGE;
 
 @Slf4j
@@ -33,6 +33,7 @@ public class LoginServiceImpl implements LoginService {
         log.info("LoginServiceImpl :: doLogin :: loginRequest : {}", loginRequest);
 
         User user = loginAnemicService.getUser(loginRequest.getEmail());
+
         if (user == null) {
             throw new NoUserFoundException(NO_USER_AVAILABLE_MESSAGE);
         }

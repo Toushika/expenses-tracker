@@ -1,4 +1,4 @@
-package rnd.dev.authmanagement.error.response;
+package rnd.dev.expensemanagement.error.response;
 
 import lombok.Data;
 
@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class ApiErrorResponse {
-
     private int status;
     private String message;
     private LocalDateTime timestamp;

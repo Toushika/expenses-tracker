@@ -6,7 +6,7 @@ import rnd.dev.authmanagement.constant.DatePatternConstants;
 import rnd.dev.authmanagement.dto.request.SignupRequest;
 import rnd.dev.authmanagement.dto.response.SignupResponse;
 import rnd.dev.authmanagement.entity.User;
-import rnd.dev.authmanagement.entity.misc.Role;
+import rnd.dev.authmanagement.entity.enums.Role;
 import rnd.dev.authmanagement.error.exception.UserAlreadyExistException;
 import rnd.dev.authmanagement.utility.DateConverter;
 import rnd.dev.authmanagement.utility.PasswordUtility;
@@ -14,7 +14,7 @@ import rnd.dev.authmanagement.utility.Sha256Utility;
 
 import java.util.Date;
 
-import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.USER_ALREADY_EXIST_MESSAGE;
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstants.USER_ALREADY_EXIST_MESSAGE;
 import static rnd.dev.authmanagement.constant.ResponseMessage.SUCCESSFUL_USER_CREATION_RESPONSE;
 
 @Slf4j

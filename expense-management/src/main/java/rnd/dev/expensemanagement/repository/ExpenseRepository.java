@@ -21,5 +21,6 @@ public interface ExpenseRepository extends MongoRepository<Expense, String> {
     long deleteByExpenseId(String expenseId);
 
     Page<Expense> findByCategory(ExpenseCategory category, Pageable pageable);
+
     Page<Expense> findByCategoryAndUserId(ExpenseCategory category, String userId, Pageable pageable);
 }
