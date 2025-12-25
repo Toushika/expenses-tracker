@@ -7,12 +7,14 @@ import rnd.dev.authmanagement.dto.request.SignupRequest;
 import rnd.dev.authmanagement.dto.response.SignupResponse;
 import rnd.dev.authmanagement.entity.User;
 import rnd.dev.authmanagement.entity.misc.Role;
+import rnd.dev.authmanagement.error.exception.UserAlreadyExistException;
 import rnd.dev.authmanagement.utility.DateConverter;
 import rnd.dev.authmanagement.utility.PasswordUtility;
 import rnd.dev.authmanagement.utility.Sha256Utility;
 
 import java.util.Date;
 
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.USER_ALREADY_EXIST_MESSAGE;
 import static rnd.dev.authmanagement.constant.ResponseMessage.SUCCESSFUL_USER_CREATION_RESPONSE;
 
 @Slf4j
@@ -28,7 +30,7 @@ public class SignupServiceImpl implements SignupService {
     @Override
     public SignupResponse doSignup(SignupRequest signupRequest) {
         if (signupAnemicService.isUserExist(signupRequest.getEmail())) {
-            throw new RuntimeException("Enter Unique Email for Registration. Already same email exists");
+            throw new UserAlreadyExistException(USER_ALREADY_EXIST_MESSAGE);
         }
         User user = buildUser(signupRequest);
         User savedUser = signupAnemicService.doSignup(user);
@@ -38,9 +40,7 @@ public class SignupServiceImpl implements SignupService {
 
     private User buildUser(SignupRequest signupRequest) {
 
-        log.info("buildUserDto :: signupRequest : {}", signupRequest);
-        log.info("buildUserDto :: userId : {}", Sha256Utility.hash(signupRequest.getEmail() + System.currentTimeMillis()));
-        log.info("buildUserDto :: password : {}", Sha256Utility.hash(signupRequest.getPassword()));
+        log.info("SignupServiceImpl :: buildUserDto :: signupRequest : {}", signupRequest);
 
         return User.builder()
                 .userId(Sha256Utility.hash(signupRequest.getEmail() + System.currentTimeMillis()))

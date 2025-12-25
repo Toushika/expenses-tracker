@@ -7,5 +7,8 @@ public class SecurityConstants {
     }
 
     public static final String SHA_256_ALGORITHM = "SHA-256";
-    public static final String SECRET_KEY_STRING = "mySecretKey123";
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String BEARER_PREFIX = "Bearer ";
+    public static final String CLAIM_NAME = "role";
+    public static final int BEARER_REMOVAL_NUMBER = 7;
 }

@@ -5,9 +5,13 @@ import org.springframework.stereotype.Service;
 import rnd.dev.authmanagement.dto.request.LoginRequest;
 import rnd.dev.authmanagement.dto.response.LoginResponse;
 import rnd.dev.authmanagement.entity.User;
+import rnd.dev.authmanagement.error.exception.NoUserFoundException;
+import rnd.dev.authmanagement.error.exception.WrongPasswordException;
 import rnd.dev.authmanagement.utility.JwtUtility;
 import rnd.dev.authmanagement.utility.PasswordUtility;
 
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.NO_USER_AVAILABLE_MESSAGE;
+import static rnd.dev.authmanagement.constant.ExceptionMessageConstant.WRONG_PASSWORD_MESSAGE;
 import static rnd.dev.authmanagement.constant.ResponseMessage.SUCCESSFUL_LOGIN_MESSAGE;
 
 @Slf4j
@@ -25,14 +29,16 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginResponse doLogin(LoginRequest loginRequest) {
-        log.info("doLogin :: loginRequest : {}", loginRequest);
+
+        log.info("LoginServiceImpl :: doLogin :: loginRequest : {}", loginRequest);
+
         User user = loginAnemicService.getUser(loginRequest.getEmail());
         if (user == null) {
-            throw new RuntimeException("No user available");
+            throw new NoUserFoundException(NO_USER_AVAILABLE_MESSAGE);
         }
 
         if (!PasswordUtility.matches(loginRequest.getPassword(), user.getPasswordHash())) {
-            throw new RuntimeException("You Entered wrong Password");
+            throw new WrongPasswordException(WRONG_PASSWORD_MESSAGE);
         }
 
         String token = jwtUtility.generateToken(user.getUserId(), user.getRole().name());

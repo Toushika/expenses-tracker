@@ -7,6 +7,7 @@ import rnd.dev.authmanagement.dto.response.UserInfoResponse;
 import rnd.dev.authmanagement.service.ValidateUserService;
 
 import static rnd.dev.authmanagement.constant.ApiUrlConstants.VALIDATE_URL;
+import static rnd.dev.authmanagement.constant.SecurityConstants.AUTHORIZATION;
 
 @RestController
 public class ValidateUserController extends AbstractController {
@@ -18,7 +19,7 @@ public class ValidateUserController extends AbstractController {
     }
 
     @GetMapping(VALIDATE_URL)
-    public UserInfoResponse validateToken(@RequestHeader("Authorization") String authHeader) {
+    public UserInfoResponse validateToken(@RequestHeader(AUTHORIZATION) String authHeader) {
         return validateUserService.validate(authHeader);
 
     }

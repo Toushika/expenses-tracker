@@ -31,7 +31,7 @@ public class JwtUtility {
                 .compact();
     }
 
-    public  Claims validateAndExtract(String token) {
+    public Claims validateAndExtract(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
