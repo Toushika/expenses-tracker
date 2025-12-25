@@ -9,4 +9,5 @@ public class ApiUrlConstants {
     public static final String AUTH_BASE_URL = "/auth";
     public static final String SIGNUP_URL = "/signup";
     public static final String LOGIN_URL = "/login";
+    public static final String VALIDATE_URL = "/validate";
 }
