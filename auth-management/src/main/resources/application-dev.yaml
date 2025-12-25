@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      database: dragon
+      username: admin
+      password: secret
+      authentication-database: admin
+      auto-index-creation: true
+
+
+security:
+  jwt:
+    secret: "my-super-secret-key-which-is-at-least-32-characters"
+    expiration-ms: 18000000   # 5 hours
